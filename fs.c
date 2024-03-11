@@ -14,6 +14,8 @@ ZObject init()
     Module_addSigNativeFun(fsmod,"ls",&LS,"s");
     Module_addSigNativeFun(fsmod,"getcwd",&GETCWD,"");
     Module_addSigNativeFun(fsmod, "dirname",&DIRNAME,"s");
+    Module_addSigNativeFun(fsmod, "basename",&BASENAME,"s");
+    
     return ZObjFromModule(fsmod);
 }
 
@@ -50,5 +52,14 @@ ZObject DIRNAME(ZObject* args,int32_t n)
   memcpy(tmp,str->val,str->len);
   tmp[str->len] = 0;
   char* name = dirname(tmp);
+  return ZObjFromStr(name);
+}
+ZObject BASENAME(ZObject* args,int32_t n)
+{
+  ZStr* str = AS_STR(args[0]);
+  char* tmp = malloc((str->len+1)*sizeof(char));
+  memcpy(tmp,str->val,str->len);
+  tmp[str->len] = 0;
+  char* name = basename(tmp);
   return ZObjFromStr(name);
 }
