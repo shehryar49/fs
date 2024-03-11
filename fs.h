@@ -12,6 +12,6 @@
 EXPORT ZObject init();
 // Module functionality
 EXPORT ZObject LS(ZObject*,int32_t);
-
-
+EXPORT ZObject GETCWD(ZObject*,int32_t);
+EXPORT ZObject DIRNAME(ZObject*,int32_t);
 #endif
